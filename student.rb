@@ -12,12 +12,3 @@ class Student < Person
     '¯\\_(ツ)_/¯'.encode('utf-8')
   end
 end
-
-lucas=Student.new(18, 'AA', 'Lucas', true)
-puts lucas
-puts lucas.name
-puts lucas.age
-puts lucas.classroom
-puts lucas.can_use_services?
-puts lucas.id
-puts lucas.play_hooky
