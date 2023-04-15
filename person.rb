@@ -25,6 +25,10 @@ class Person < Nameable
     @name
   end
 
+  def print_info
+    `Name: #{self.name}, ID: #{self.id}, Age: #{self.age}`
+  end
+
   private
 
   def of_age?

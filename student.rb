@@ -16,4 +16,8 @@ class Student < Person
   def play_hooky
     '¯\\_(ツ)_/¯'.encode('utf-8')
   end
+
+  def print_info
+    `Student: #{self.name}, ID: #{self.id}, Age: #{self.age,}, Classroom: #{self.classroom,}`
+  end
 end
