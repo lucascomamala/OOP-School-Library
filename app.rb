@@ -23,7 +23,6 @@ class App
     t2 = Teacher.new(25, 'Physics', name: 'John', parent_permission: true)
     @people << t1
     @people << t2
-    p @people
   end
 
   # rubocop:disable Metrics/MethodLength
@@ -75,6 +74,41 @@ class App
       if p.instance_of? Teacher
         puts p.print_info
       end
+    end
+  end
+
+  def check_permission(permission)
+    case permission
+    when 'y', 'Y' then permit = true
+    when 'n', 'N' then permit = false
+    end
+    permit
+  end
+
+  def create_person
+    print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
+    personType = gets.chomp.to_i
+
+    until (personType == 1 || personType == 2)
+      print 'Please enter a valid option! '
+      personType = gets.chomp.to_i
+    end
+
+    print 'Name: '
+    name = gets.chomp
+    print 'Age: '
+    age = gets.chomp.to_i
+    
+    case personType
+    when 1
+      print 'Has parent permission? [y/n]: '
+      permission = gets.chomp
+      permission = check_permission(permission)
+      @people << Student.new(age, name: name, parent_permission: permission)
+    when 2
+      print 'Specialization: '
+      specialization = gets.chomp
+      @people << Teacher.new(age, specialization, name: name)
     end
   end
 end
