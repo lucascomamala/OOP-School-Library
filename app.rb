@@ -12,13 +12,15 @@ class App
     @people = []
     @rentals = []
 
-    #Add some people and books to pre-populate our app
+    # Add some people and books to pre-populate our app
     b1 = Book.new('The Alchemist', 'Paulo Coelho')
     b2 = Book.new('The Little Prince', 'Antoine de Saint-Exupéry')
     b3 = Book.new('The Doors of Perception', 'Aldous Huxley')
     b4 = Book.new('The Hobbit', 'J. R. R. Tolkien')
     @books << b1
     @books << b2
+    @books << b3
+    @books << b4
     s1 = Student.new(21, name: 'John', parent_permission: true)
     s2 = Student.new(18, name: 'Mary', parent_permission: true)
     @people << s1
@@ -127,13 +129,38 @@ class App
     puts 'Person created successfully!'
   end
 
-  def create_book()
+  def create_book
     print 'Title: '
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
     @books << Book.new(title, author)
     puts 'Book created successfully!'
+  end
+
+  def create_rental
+    # TODO: validate book input
+    puts 'Select a book from the following list by number (not id):'
+    @books.each_with_index do |book, i|
+      puts "#{i + 1}) \"#{book.title}\" by #{book.author}"
+    end
+    book_select = gets.chomp.to_i
+    puts
+
+    # TODO: validate person input
+    puts 'Select a person from the following list by number (not id):'
+    @people.each_with_index do |p, i|
+      puts "#{i + 1}) [#{p.class}] Name: #{p.name}, ID: #{p.id}, Age: #{p.age}"
+    end
+    person_select = gets.chomp.to_i
+    puts
+
+    # TODO: validate date input
+    print 'Date: '
+    date = gets.chomp
+
+    @rentals.push(Rental.new(date, @books[book_select - 1], @person[person_select - 1]))
+    puts 'Rental created successfully!'
   end
   # rubocop:enable Metrics/MethodLength
 end
