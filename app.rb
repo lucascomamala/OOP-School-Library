@@ -11,8 +11,12 @@ class App
     @books = []
     @people = []
     @rentals = []
+
+    #Add some people and books to pre-populate our app
     b1 = Book.new('The Alchemist', 'Paulo Coelho')
     b2 = Book.new('The Little Prince', 'Antoine de Saint-Exupéry')
+    b3 = Book.new('The Doors of Perception', 'Aldous Huxley')
+    b4 = Book.new('The Hobbit', 'J. R. R. Tolkien')
     @books << b1
     @books << b2
     s1 = Student.new(21, name: 'John', parent_permission: true)
@@ -26,7 +30,7 @@ class App
   end
 
   # rubocop:disable Metrics/MethodLength
-  def select_option # rubocop:disable Style/CyclomaticComplexity
+  def select_option # rubocop:disable Metrics/CyclomaticComplexity
     selected = gets.chomp.to_i
     puts
     case selected
@@ -120,9 +124,16 @@ class App
       @people << Teacher.new(age, specialization, name: name)
     end
 
-    puts 'Person created successfully'
+    puts 'Person created successfully!'
   end
 
-  def create_book; end
+  def create_book()
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    @books << Book.new(title, author)
+    puts 'Book created successfully!'
+  end
   # rubocop:enable Metrics/MethodLength
 end
