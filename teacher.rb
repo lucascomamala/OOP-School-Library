@@ -13,6 +13,6 @@ class Teacher < Person
   end
 
   def print_info
-    "Teacher: #{name}, ID: #{id}, Age: #{age}, Specialization: #{specialization}"
+    "Name: #{name}, ID: #{id}, Age: #{age}, Specialization: #{specialization}"
   end
 end

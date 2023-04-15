@@ -18,6 +18,10 @@ class Student < Person
   end
 
   def print_info
-    "Student: #{name}, ID: #{id}, Age: #{age}, Classroom: #{classroom}"
+    if @classroom.nil?
+      "Name: #{name}, ID: #{id}, Age: #{age}, Classroom: Not assigned"
+    else
+      "Name: #{name}, ID: #{id}, Age: #{age}, Classroom: #{classroom}"
+    end
   end
 end
