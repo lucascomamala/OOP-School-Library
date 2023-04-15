@@ -6,13 +6,14 @@ require './classroom'
 require './book'
 require './rental'
 
+# rubocop:disable Metrics/MethodLength
 class App
   def initialize
     @books = []
     @people = []
     @rentals = []
 
-    # Add some people and books to pre-populate our app
+    # Add some people, books and rentals to pre-populate our app
     b1 = Book.new('The Alchemist', 'Paulo Coelho')
     b2 = Book.new('The Little Prince', 'Antoine de Saint-Exupéry')
     b3 = Book.new('The Doors of Perception', 'Aldous Huxley')
@@ -25,13 +26,14 @@ class App
     s2 = Student.new(18, name: 'Mary', parent_permission: true)
     @people << s1
     @people << s2
-    t1 = Teacher.new(30, 'Math', name: 'Peter', parent_permission: true)
-    t2 = Teacher.new(25, 'Physics', name: 'John', parent_permission: true)
+    t1 = Teacher.new(30, 'Math', name: 'Enrico Fermi', parent_permission: true)
+    t2 = Teacher.new(25, 'Physics', name: 'Richard Feynman', parent_permission: true)
     @people << t1
     @people << t2
+    @rentals << Rental.new('2021-01-01', b1, s1)
+    @rentals << Rental.new('2021-01-01', b2, s1)
   end
 
-  # rubocop:disable Metrics/MethodLength
   def select_option # rubocop:disable Metrics/CyclomaticComplexity
     selected = gets.chomp.to_i
     puts
@@ -159,8 +161,19 @@ class App
     print 'Date: '
     date = gets.chomp
 
-    @rentals.push(Rental.new(date, @books[book_select - 1], @person[person_select - 1]))
+    @rentals.push(Rental.new(date, @books[book_select - 1], @people[person_select - 1]))
     puts 'Rental created successfully!'
+  end
+
+  def list_rentals_for_person_id
+    # TODO: Check that person exists
+    print 'ID of person: '
+    id = gets.chomp.to_i
+
+    puts 'Rentals:'
+    @rentals.each do |r|
+      puts "Date: #{r.date}, Book: \"#{r.book.title}\" by #{r.book.author}" if r.person.id == id
+    end
   end
   # rubocop:enable Metrics/MethodLength
 end
