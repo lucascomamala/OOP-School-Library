@@ -1,3 +1,4 @@
+# rubocop:disable Lint/UselessAssignment
 require_relative './decorators/trimmer_decorator'
 require_relative './decorators/capitalize_decorator'
 require_relative './teacher'
@@ -31,13 +32,14 @@ p r6 = Rental.new('2020-10-25', b3, s1)
 
 p '++++++++++++++++'
 p t1.rentals.count
-p t1.rentals.map { |rental| rental.book.title }
+p(t1.rentals.map { |rental| rental.book.title })
 p '----------------'
 p t2.rentals.count
-p t2.rentals.map { |rental| rental.book.title }
+p(t2.rentals.map { |rental| rental.book.title })
 p '----------------'
 p s1.rentals.count
-p s1.rentals.map { |rental| rental.book.title }
+p(s1.rentals.map { |rental| rental.book.title })
 p '----------------'
 p b1.rentals.count
-p b1.rentals.map { |rental| rental.person.name }
+p(b1.rentals.map { |rental| rental.person.name })
+# rubocop:enable Lint/UselessAssignment
