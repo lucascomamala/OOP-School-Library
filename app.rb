@@ -51,7 +51,6 @@ class App
     puts
     selected
   end
-  # rubocop:enable Metrics/MethodLength
 
   def list_books
     puts 'Books in library:'
@@ -63,17 +62,13 @@ class App
   def list_people
     puts 'Students:'
     @people.each do |p|
-      if p.instance_of? Student
-        puts p.print_info
-      end
+      puts p.print_info if p.instance_of? Student
     end
-    
+
     puts
     puts 'Teachers:'
     @people.each do |p|
-      if p.instance_of? Teacher
-        puts p.print_info
-      end
+      puts p.print_info if p.instance_of? Teacher
     end
   end
 
@@ -85,21 +80,35 @@ class App
     permit
   end
 
+  def check_age(msg)
+    number = 0
+    loop do
+      print msg
+      input = gets.chomp.to_i
+      if input.is_a?(Integer) && input.positive?
+        number = input
+        break
+      else
+        puts 'Please enter a valid input!'
+      end
+    end
+    number
+  end
+
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
-    personType = gets.chomp.to_i
+    person_type = gets.chomp.to_i
 
-    until (personType == 1 || personType == 2)
+    until [1, 2].include?(person_type)
       print 'Please enter a valid option! '
-      personType = gets.chomp.to_i
+      person_type = gets.chomp.to_i
     end
 
     print 'Name: '
     name = gets.chomp
-    print 'Age: '
-    age = gets.chomp.to_i
-    
-    case personType
+    age = check_age('Age: ')
+
+    case person_type
     when 1
       print 'Has parent permission? [y/n]: '
       permission = gets.chomp
@@ -110,5 +119,10 @@ class App
       specialization = gets.chomp
       @people << Teacher.new(age, specialization, name: name)
     end
+
+    puts 'Person created successfully'
   end
+
+  def create_book; end
+  # rubocop:enable Metrics/MethodLength
 end
