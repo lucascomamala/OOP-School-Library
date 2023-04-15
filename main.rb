@@ -1,7 +1,7 @@
 require_relative './app'
 
 def print_question
-  puts "Please choose an option by enterin a number:
+  puts "Please choose an option by entering a number:
     1- List all books.
     2- List all people.
     3- Create a person.
@@ -13,7 +13,8 @@ end
 
 class Main
   app = App.new
-  puts 'Welcome to library Application!'
+  puts 'Welcome to the School Library Application!'
+  puts
   loop do
     print_question
     selected = app.select_option

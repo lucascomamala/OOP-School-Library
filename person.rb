@@ -26,7 +26,7 @@ class Person < Nameable
   end
 
   def print_info
-    `Name: #{self.name}, ID: #{self.id}, Age: #{self.age}`
+    "Name: #{name}, ID: #{id}, Age: #{age}"
   end
 
   private

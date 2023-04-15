@@ -11,10 +11,16 @@ class App
     @books = []
     @people = []
     @rentals = []
+    b1 = Book.new('The Alchemist', 'Paulo Coelho')
+    b2 = Book.new('The Little Prince', 'Antoine de Saint-Exupéry')
+    @books << b1
+    @books << b2
   end
 
-  def select_option
+  # rubocop:disable Metrics/MethodLength
+  def select_option # rubocop:disable Style/CyclomaticComplexity
     selected = gets.chomp.to_i
+    puts
     case selected
     when 1
       list_books
@@ -33,8 +39,16 @@ class App
       exit(true)
     else
       puts 'That is not a valid option'
-      puts
     end
+    puts
     selected
+  end
+  # rubocop:enable Metrics/MethodLength
+
+  def list_books
+    puts 'Books in library:'
+    @books.each do |b|
+      puts "\"#{b.title}\" by #{b.author}"
+    end
   end
 end
