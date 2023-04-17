@@ -33,7 +33,6 @@ After you're finished please remove all the comments and instructions!
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
-  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -70,12 +69,6 @@ After you're finished please remove all the comments and instructions!
 - **Save records of who borrowed a given book and when**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LIVE DEMO -->
-
-## 🚀 Live Demo <a name="live-demo"></a>
-
-- Not available yet
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -122,7 +115,7 @@ $  bundle install
 To run the project, execute the following command:
 
 ```sh
-  ruby
+  ruby main.rb
 ```
 
 ### Run tests
@@ -166,9 +159,8 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]**
+- [ ] **Validate all inputs**
+- [ ] **Create additional classes that inherit from Person**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

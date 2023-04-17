@@ -11,4 +11,8 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def print_info
+    "Name: #{name}, ID: #{id}, Age: #{age}, Specialization: #{specialization}"
+  end
 end
